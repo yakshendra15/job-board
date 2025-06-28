@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - JobBoard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-briefcase"></i>
+                <span>JobBoard</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#" class="nav-link active">Dashboard</a>
+                <a href="#" class="nav-link">My Applications</a>
+                <a href="#" class="nav-link">Saved Jobs</a>
+                <a href="#" class="nav-link">Profile</a>
+                <div class="user-menu">
+                    <img src="https://via.placeholder.com/32" alt="Profile" class="user-avatar">
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">Settings</a>
+                        <a href="#" class="dropdown-item">Help</a>
+                        <a href="#" class="dropdown-item" onclick="logout()">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="welcome-section">
+                <h1>Welcome back, <span id="userName">User</span>!</h1>
+                <p>Here are your personalized job recommendations</p>
+            </div>
+            <div class="quick-stats">
+                <div class="stat-card">
+                    <i class="fas fa-eye"></i>
+                    <div>
+                        <h3 id="viewedJobs">0</h3>
+                        <p>Jobs Viewed</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-paper-plane"></i>
+                    <div>
+                        <h3 id="appliedJobs">0</h3>
+                        <p>Applications</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-heart"></i>
+                    <div>
+                        <h3 id="savedJobs">0</h3>
+                        <p>Saved Jobs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <aside class="filters-sidebar">
+                <div class="filter-section">
+                    <h3>Filters</h3>
+                    
+                    <div class="filter-group">
+                        <label>Job Type</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="full-time" checked>
+                                <span class="checkmark"></span>
+                                Full-time
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="part-time">
+                                <span class="checkmark"></span>
+                                Part-time
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="contract">
+                                <span class="checkmark"></span>
+                                Contract
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="remote">
+                                <span class="checkmark"></span>
+                                Remote
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Experience Level</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="entry" checked>
+                                <span class="checkmark"></span>
+                                Entry Level
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="junior" checked>
+                                <span class="checkmark"></span>
+                                Junior
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" value="senior">
+                                <span class="checkmark"></span>
+                                Senior
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Salary Range</label>
+                        <div class="range-slider">
+                            <input type="range" id="salaryMin" min="0" max="200000" value="0">
+                            <input type="range" id="salaryMax" min="0" max="200000" value="200000">
+                            <div class="range-values">
+                                <span>$<span id="salaryMinValue">0</span></span>
+                                <span>$<span id="salaryMaxValue">200,000</span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Location</label>
+                        <input type="text" placeholder="Enter location" id="locationFilter">
+                    </div>
+
+                    <button class="apply-filters-btn" onclick="applyFilters()">
+                        <i class="fas fa-filter"></i>
+                        Apply Filters
+                    </button>
+                </div>
+            </aside>
+
+            <section class="jobs-section">
+                <div class="jobs-header">
+                    <h2>Recommended Jobs</h2>
+                    <div class="jobs-controls">
+                        <select id="sortJobs" onchange="sortJobs()">
+                            <option value="relevance">Most Relevant</option>
+                            <option value="date">Latest</option>
+                            <option value="salary">Highest Salary</option>
+                        </select>
+                        <div class="view-toggle">
+                            <button class="view-btn active" onclick="toggleView('grid')">
+                                <i class="fas fa-th"></i>
+                            </button>
+                            <button class="view-btn" onclick="toggleView('list')">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="jobs-grid" id="jobsContainer">
+                    <!-- Jobs will be populated by JavaScript -->
+                </div>
+
+                <div class="load-more">
+                    <button class="load-more-btn" onclick="loadMoreJobs()">
+                        <i class="fas fa-plus"></i>
+                        Load More Jobs
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Job Detail Modal -->
+    <div class="modal" id="jobModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="jobModalContent">
+                <!-- Job details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

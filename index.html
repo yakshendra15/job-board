@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobBoard - Find Your Dream Job</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-briefcase"></i>
+                <span>JobBoard</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Jobs</a>
+                <a href="#" class="nav-link">Companies</a>
+                <a href="#" class="nav-link">About</a>
+                <a href="login.html" class="nav-link login-btn">Login</a>
+                <a href="signup.html" class="nav-link signup-btn">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="hero-content">
+            <h1>Find Your Dream Job</h1>
+            <p>Discover opportunities that match your skills, degree, and location</p>
+            <div class="search-box">
+                <input type="text" placeholder="Job title, keywords, or company" id="searchInput">
+                <input type="text" placeholder="Location" id="locationInput">
+                <button class="search-btn" onclick="searchJobs()">
+                    <i class="fas fa-search"></i>
+                    Search Jobs
+                </button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <h3>10,000+</h3>
+                    <p>Active Jobs</p>
+                </div>
+                <div class="stat">
+                    <h3>500+</h3>
+                    <p>Companies</p>
+                </div>
+                <div class="stat">
+                    <h3>50,000+</h3>
+                    <p>Job Seekers</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="features">
+        <h2>Why Choose JobBoard?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-user-graduate"></i>
+                <h3>Degree-Based Matching</h3>
+                <p>Find jobs that match your educational background and qualifications</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Location-Based Search</h3>
+                <p>Discover opportunities in your preferred location or remote positions</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-tools"></i>
+                <h3>Skill Matching</h3>
+                <p>Get personalized recommendations based on your skills and experience</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-bell"></i>
+                <h3>Job Alerts</h3>
+                <p>Receive notifications for new opportunities that match your profile</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>JobBoard</h4>
+                <p>Connecting talented professionals with amazing opportunities.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#">Browse Jobs</a>
+                <a href="#">Post a Job</a>
+                <a href="#">Career Advice</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="#">Help Center</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 JobBoard. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
